@@ -1,0 +1,157 @@
+{
+  "name":"Prevalence of controlled hypertension",
+  "children": [
+    {
+      "name": "18 Years Old And Over",
+      "class": "Age ",
+      "children": [
+        {
+          "name": "48.3%",
+          "class": "Total",
+          "children": [
+            {
+              "name": "Male",
+              "class": "Gender",
+              "children": [
+                {
+                  "name": "45.7%",
+                  "class": "Percentage",
+                  "size": 48.3,
+                  "color": "18 Years Old And Over",
+                  "label": null
+                }
+              ]
+            },
+            {
+              "name": "Female",
+              "class": "Gender",
+              "children": [
+                {
+                  "name": "52.5%",
+                  "class": "Percentage",
+                  "size": 48.3,
+                  "color": "18 Years Old And Over",
+                  "label": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "18-39 Years Old",
+      "class": "Age ",
+      "children": [
+        {
+          "name": "32.5%",
+          "class": "Total",
+          "children": [
+            {
+              "name": "Male",
+              "class": "Gender",
+              "children": [
+                {
+                  "name": "15.5%",
+                  "class": "Percentage",
+                  "size": 32.5,
+                  "color": "18-39 Years Old",
+                  "label": null
+                }
+              ]
+            },
+            {
+              "name": "Female",
+              "class": "Gender",
+              "children": [
+                {
+                  "name": "62.6%",
+                  "class": "Percentage",
+                  "size": 32.5,
+                  "color": "18-39 Years Old",
+                  "label": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "40-59 Years Old",
+      "class": "Age ",
+      "children": [
+        {
+          "name": "50.8%",
+          "class": "Total",
+          "children": [
+            {
+              "name": "Male",
+              "class": "Gender",
+              "children": [
+                {
+                  "name": "48.1%",
+                  "class": "Percentage",
+                  "size": 50.8,
+                  "color": "40-59 Years Old",
+                  "label": null
+                }
+              ]
+            },
+            {
+              "name": "Female",
+              "class": "Gender",
+              "children": [
+                {
+                  "name": "54.2%",
+                  "class": "Percentage",
+                  "size": 50.8,
+                  "color": "40-59 Years Old",
+                  "label": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "60 Years Old And Over",
+      "class": "Age ",
+      "children": [
+        {
+          "name": "49.4%",
+          "class": "Total",
+          "children": [
+            {
+              "name": "Male",
+              "class": "Gender",
+              "children": [
+                {
+                  "name": "49.7%",
+                  "class": "Percentage",
+                  "size": 49.4,
+                  "color": "60 Years Old And Over",
+                  "label": null
+                }
+              ]
+            },
+            {
+              "name": "Female",
+              "class": "Gender",
+              "children": [
+                {
+                  "name": "49.2%",
+                  "class": "Percentage",
+                  "size": 49.4,
+                  "color": "60 Years Old And Over",
+                  "label": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

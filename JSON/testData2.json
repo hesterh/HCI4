@@ -1,0 +1,100 @@
+{
+  "name":"Prevalence of controlled hypertension",
+  "children": [
+    {
+      "name": "1992",
+      "class": "year",
+      "children": [
+        {
+          "name": "Hypertension",
+          "class": "disease",
+          "children": [
+            {
+              "name": "16.1",
+              "class": "prevalence_rate",
+              "size": 16.1,
+              "color": "1992",
+              "label": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1998",
+      "class": "year",
+      "children": [
+        {
+          "name": "Hypertension",
+          "class": "disease",
+          "children": [
+            {
+              "name": "21.5",
+              "class": "prevalence_rate",
+              "size": 21.5,
+              "color": "1998",
+              "label": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2004",
+      "class": "year",
+      "children": [
+        {
+          "name": "Hypertension",
+          "class": "disease",
+          "children": [
+            {
+              "name": "20.1",
+              "class": "prevalence_rate",
+              "size": 20.1,
+              "color": "2004",
+              "label": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2010",
+      "class": "year",
+      "children": [
+        {
+          "name": "Hypertension",
+          "class": "disease",
+          "children": [
+            {
+              "name": "18.9",
+              "class": "prevalence_rate",
+              "size": 18.9,
+              "color": "2010",
+              "label": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2017",
+      "class": "year",
+      "children": [
+        {
+          "name": "Hypertension",
+          "class": "disease",
+          "children": [
+            {
+              "name": "21.5",
+              "class": "prevalence_rate",
+              "size": 21.5,
+              "color": "2017",
+              "label": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

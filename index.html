@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>One Page Wonder - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+   <script src='https://d3js.org/d3.v4.min.js'></script>
+   <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+   <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+  <!-- Custom styles for this template -->
+  <link href="css/one-page-wonder.css" rel="stylesheet">
+
+
+</head>
+<style>
+        body {
+            font-family: Sans-serif;
+            font-size: 11px;
+            /* background-color: blue; */
+        }
+
+        .slice {
+            cursor: pointer;
+        }
+
+        .slice .main-arc {
+            stroke: #fff;
+            stroke-width: 1px;
+        }
+
+        .slice .hidden-arc {
+            fill: none;
+        }
+
+        .slice text {
+            pointer-events: none;
+            dominant-baseline: middle;
+            text-anchor: middle;
+        }
+
+        #hpt{
+          /* border: 5px solid red; */
+        }
+
+        #hpt-title{
+          /* border: 2px solid blue; */
+          position: relative;
+        }
+        #hpt-img{
+        /* border: 2px solid purple; */
+        /* float:right; */
+        display:block;
+        margin:auto;
+        }
+
+
+</style>
+
+<script>
+var points = [];
+function addData(data) {
+	for (var i = 0; i < data.length; i++) {
+		points.push({
+			// x: new Date(data[i].date),
+			// y: data[i].units
+      y: data[i].size, name: data[i].name
+		});
+  }
+}
+
+// This will not work in google chrome because it only allows urls containing
+// "http, https etc"
+$.getJSON("JSON/testData3.json", addData);
+
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	theme: "dark2",
+	exportFileName: "Doughnut Chart",
+	exportEnabled: false,
+	animationEnabled: true,
+	title:{
+		text: "Prevalence of Hypertension"
+	},
+	legend:{
+		cursor: "pointer",
+    itemmouseover : explodePie,
+    itemmouseout : returnPie
+	},
+	data: [{
+		type: "doughnut",
+		innerRadius: 60,
+		showInLegend: true,
+		toolTipContent: "<b>{name}</b>: {y}%",
+    indexLabel: "Year {name}",
+    mouseover : explodePie,
+    mouseout: returnPie,
+    dataPoints: points
+	}]
+});
+
+chart.render();
+
+// Data moves outwards
+function explodePie (e) {
+	if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+	} else {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+	}
+	e.chart.render();
+}
+
+// Data moves inwards
+function returnPie (e) {
+	if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) !== "undefined" || e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+	} else {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+	}
+	e.chart.render();
+}
+
+}
+</script>
+
+<body>
+
+  <!-- Navigation -->
+  <!-- <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Start Bootstrap</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Log In</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav> -->
+
+<!-- Header -->
+  <header class="masthead text-center text-white">
+    <div class="masthead-content">
+      <div class="container">
+        <h1 class="masthead-heading mb-0">How High Are You?</h1>
+        <h2 class="masthead-subheading mb-0">Can you see this text?</h2>
+        <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5">Yes</a>
+      </div>
+    </div>
+    <div class="bg-circle-1 bg-circle"></div>
+    <div class="bg-circle-2 bg-circle"></div>
+    <div class="bg-circle-3 bg-circle"></div>
+    <div class="bg-circle-4 bg-circle"></div>
+  </header>
+
+<!-- Infographics -->
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-lg-2">
+          <div class="p-5">
+            <img src="img/hypertension.svg" height="400" width="400">
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <div class="p-5" id="hpt">
+            <!-- <img src="img/hypertension.svg" height="300" width="300" id="hpt-img"> -->
+            <h2 class="display-4" id="hpt-title">What is Hypertension?</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="p-5">
+            <script>
+                //slices size
+                    const width = window.innerWidth,
+                        height = window.innerHeight,
+                        maxRadius = (Math.min(width, height) / 2) - 5;
+
+                    const formatNumber = d3.format(',d');
+
+                    const x = d3.scaleLinear()
+                        .range([0, 2 * Math.PI])
+                        .clamp(true);
+
+                    const y = d3.scaleSqrt()
+                        .range([maxRadius*.1, maxRadius]);
+
+                        //colour of slices
+                    const color = d3.scaleOrdinal(["#957DAD", "#D291BC", "#E0EEB4", "#FEC8D8", "#FEBCC8", "#E0FEFE", "#EAEBFF", "#FFDFD3"]);
+
+                    const partition = d3.partition();
+
+                    const arc = d3.arc()
+                        .startAngle(d => x(d.x0))
+                        .endAngle(d => x(d.x1))
+                        .innerRadius(d => Math.max(0, y(d.y0)))
+                        .outerRadius(d => Math.max(0, y(d.y1)));
+
+                    const middleArcLine = d => {
+                        const halfPi = Math.PI/2;
+                        const angles = [x(d.x0) - halfPi, x(d.x1) - halfPi];
+                        const r = Math.max(0, (y(d.y0) + y(d.y1)) / 2);
+
+                        const middleAngle = (angles[1] + angles[0]) / 2;
+                        const invertDirection = middleAngle > 0 && middleAngle < Math.PI; // On lower quadrants write text ccw
+                        if (invertDirection) { angles.reverse(); }
+
+                        const path = d3.path();
+                        path.arc(0, 0, r, angles[0], angles[1], invertDirection);
+                        return path.toString();
+                    };
+
+                    const textFits = d => {
+                        const CHAR_SPACE = 6;
+
+                        const deltaAngle = x(d.x1) - x(d.x0);
+                        const r = Math.max(0, (y(d.y0) + y(d.y1)) / 2);
+                        const perimeter = r * deltaAngle;
+
+                        return d.data.name.length * CHAR_SPACE < perimeter;
+                    };
+                    // end of slices size
+
+                    //slices animation
+                    const svg = d3.select('body').append('svg')
+                        .style('width', '100vw')
+                        .style('height', '100vh')
+                        .attr('viewBox', `${-width / 2} ${-height / 2} ${width} ${height}`)
+                        .on('click', () => focusOn()); // Reset zoom on canvas click
+
+                    d3.json('JSON/testData1.json', (error, root) => {
+                        if (error) throw error;
+
+                        root = d3.hierarchy(root);
+                        root.sum(d => d.size);
+
+                        const slice = svg.selectAll('g.slice')
+                            .data(partition(root).descendants());
+
+
+                        slice.exit().remove();
+
+                        //to expend slices  partition(root).descendants()
+                        const newSlice = slice.enter()
+                            .append('g').attr('class', 'slice')
+                            .on('click', d => {
+                                d3.event.stopPropagation();
+                                focusOn(d);
+                            });
+
+                        newSlice.append('title')
+                            .text(d => d.data.name + '\n' + formatNumber(d.value));
+
+                        newSlice.append('path')
+                            .attr('class', 'main-arc')
+                            .style('fill', d => color((d.children ? d : d.parent).data.name))
+                            .attr('d', arc);
+
+                        newSlice.append('path')
+                            .attr('class', 'hidden-arc')
+                            .attr('id', (_, i) => `hiddenArc${i}`)
+                            .attr('d', middleArcLine);
+
+                        const text = newSlice.append('text')
+                            .attr('display', d => textFits(d) ? null : descendants());
+
+                        // Add white contour
+                        text.append('textPath')
+                            .attr('startOffset','50%')
+                            .attr('xlink:href', (_, i) => `#hiddenArc${i}` )
+                            .text(d => d.data.name)
+                            .style('fill', 'none')
+                            .style('stroke', '#fff')
+                            .style('stroke-width', 5)
+                            .style('stroke-linejoin', 'round');
+
+                        text.append('textPath')
+                            .attr('startOffset','50%')
+                            .attr('xlink:href', (_, i) => `#hiddenArc${i}` )
+                            .text(d => d.data.name);
+                    });
+
+                    function focusOn(d = { x0: 0, x1: 1, y0: 0, y1: 1 }) {
+                        // Reset to top-level if no data point specified
+
+                        //transition of the slices
+                        const transition = svg.transition()
+                            .duration(750)
+                            .tween('scale', () => {
+                                const xd = d3.interpolate(x.domain(), [d.x0, d.x1]),
+                                    yd = d3.interpolate(y.domain(), [d.y0, 1]);
+                                return t => { x.domain(xd(t)); y.domain(yd(t)); };
+                            });
+
+                        transition.selectAll('path.main-arc')
+                            .attrTween('d', d => () => arc(d));
+
+                        transition.selectAll('path.hidden-arc')
+                            .attrTween('d', d => () => middleArcLine(d));
+
+                        transition.selectAll('text')
+                            .attrTween('display', d => () => textFits(d) ? null : 'none');
+
+                        moveStackToFront(d);
+
+                        //
+
+                        function moveStackToFront(elD) {
+                            svg.selectAll('.slice').filter(d => d === elD)
+                                .each(function(d) {
+                                    this.parentNode.appendChild(this);
+                                    if (d.parent) { moveStackToFront(d.parent); }
+                                })
+                        }
+                    }
+
+             </script>
+            <!-- <div id="chartContainer" style="height: 370px; width: 100%;"></div> -->
+              <img src="img/hypertension-stats.png" height="450" width="450" "
+              400" width="400" />
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-5">
+            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+            <h2 class="display-4">Rate of getting hypertension</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+            <a href="">See Graphs</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-lg-2">
+          <div class="p-5">
+            <img class="img-fluid rounded-circle" src="img/03.jpg" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <div class="p-5">
+            <h2 class="display-4">Causes of hypertension</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Data Visualisation -->
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-lg-2">
+          <div class="p-5">
+            <img class="img-fluid rounded-circle" src="img/03.jpg" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <div class="p-5">
+            <h2 class="display-4">Effects of Hypertension, will cause death</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+            <a href="">See Graphs</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Eye Test game maybe -->
+    <section>
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 order-lg-2">
+            <div class="p-5">
+              <img class="img-fluid rounded-circle" src="img/03.jpg" alt="">
+            </div>
+          </div>
+          <div class="col-lg-6 order-lg-1">
+            <div class="p-5">
+              <h2 class="display-4">Risk Assessment Quiz</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+              <a href="">Quiz Link</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-black">
+    <div class="container">
+      <p class="m-0 text-center text-white small">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
